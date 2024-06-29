@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    module: {{ $.Chart.Name }}
+  name: {{ $.Chart.Name }}-deployment
+  namespace: {{ .Values.nginx.params.namespace }}
+spec:
+  selector:
+    matchLabels:
+      module: {{ $.Chart.Name }}
+  replicas: {{ .Values.nginx.params.replicas }} # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        module: {{ $.Chart.Name }}
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80

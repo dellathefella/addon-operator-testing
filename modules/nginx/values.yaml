@@ -1,0 +1,5 @@
+  nginx:
+    params:
+      replicas: 1
+      namespace: "default"
+  nginxEnabled: true
