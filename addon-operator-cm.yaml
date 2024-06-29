@@ -4,9 +4,10 @@ kind: ConfigMap
 metadata:
   name: addon-operator
 data:
-  global: ""
+  global: |
+    enabledModules: 
+    - nginx
   nginx: |
     params:
       replicas: "15"
       namespace: "default"
-  nginxEnabled: "true"

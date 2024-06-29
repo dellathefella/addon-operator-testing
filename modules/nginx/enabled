@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+enabled=$(jq -r '.nginxEnabled' $VALUES_PATH)
+
+if [[ $enabled == "true" ]] ; then
+  echo "true" > $MODULE_ENABLED_RESULT
+else
+  echo "false" > $MODULE_ENABLED_RESULT
+fi
+
