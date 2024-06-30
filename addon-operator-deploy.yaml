@@ -20,6 +20,10 @@ spec:
         image: localhost:5000/addon-operator-poc:latest
         imagePullPolicy: Always
         env:
+        - name: TRUENAS_API_KEY
+          value: 1-03Xw9Zi3lKPoCldaIfScOv9vO37CAz8pTakMZKMQPlYDFjyhGAmOGCt59Dpf0Uyx
+        - name: TRUENAS_URL
+          value: http://10.10.1.55
         - name: DYNAMIC_CONFIGMAP_NAME
           value: dynamic-test
         - name: ADDON_OPERATOR_PROMETHEUS_METRICS_PREFIX

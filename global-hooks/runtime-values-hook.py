@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
 import json
-import yaml
 import sys
 import random
 import os
+import sys
 import pathlib as Path
 from kubernetes import client, config
 
-def load_binding_context ():
-      binding_context_path = os.getenv("BINDING_CONTEXT_PATH")
-      binding_context_file = open(binding_context_path)
-      binding_context = json.load(binding_context_file)
-      binding_context_file.close()
-      return binding_context
+# Custom library imports
+from truenasclient import returnServices
+
 
 def load_nginx_crds ():
    try:
@@ -24,8 +21,6 @@ def load_nginx_crds ():
    resp = v1.list_cluster_custom_object(group="poc.com",version="v1alpha",plural="nginxes")
    print(resp)
    return resp
-
-      
 
 if __name__ == "__main__":
    if len(sys.argv)>1 and sys.argv[1] == "--config":
@@ -48,8 +43,8 @@ if __name__ == "__main__":
       }
       hook_config_json = json.dumps(hook_config)
       print(f'{hook_config_json}')
-
    else:
+      print(returnServices())
       print("Python global runtime values hook.")
       runtime_patch_path = os.getenv("VALUES_JSON_PATCH_PATH")
       namespace = os.getenv("ADDON_OPERATOR_NAMESPACE")
