@@ -32,7 +32,6 @@ if __name__ == "__main__":
       hook_config = {
       "configVersion": "v1",
       "onStartup": 1,
-      "beforeAll": 1,
       "schedule":[
             {
                 "crontab": "* * * * *",

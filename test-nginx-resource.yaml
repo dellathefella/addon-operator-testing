@@ -15,3 +15,21 @@ metadata:
 spec:
   minReplicas: 5
   maxReplicas: 8
+---
+apiVersion: poc.com/v1alpha
+kind: Nginx
+metadata:
+  name: test-nginx-dwdwdw
+  namespace: default
+spec:
+  minReplicas: 1
+  maxReplicas: 32
+---
+apiVersion: poc.com/v1alpha
+kind: Nginx
+metadata:
+  name: test-nginx-2fs22
+  namespace: default
+spec:
+  minReplicas: 1
+  maxReplicas: 32
