@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+param2=$(jq -r '.simpleModule.param2' $VALUES_PATH)
+
+if [[ $param2 == "stopMePlease" ]] ; then
+  echo "false" > $MODULE_ENABLED_RESULT
+else
+  echo "true" > $MODULE_ENABLED_RESULT
+fi
