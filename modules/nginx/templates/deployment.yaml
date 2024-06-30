@@ -1,22 +1,30 @@
+{{- range .Values.global.nginxReplicaGroups }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     module: {{ $.Chart.Name }}
-  name: {{ $.Chart.Name }}-deployment
-  namespace: {{ .Values.nginx.params.namespace }}
+    nginxGroup: {{ $.Chart.Name }}-{{ .name }}
+  name: {{ $.Chart.Name }}-deployment-{{ .name }}
+  namespace: {{ .namespace }}
 spec:
   selector:
     matchLabels:
-      module: {{ $.Chart.Name }}
-  replicas: {{ .Values.nginx.params.replicas }} # tells deployment to run 2 pods matching the template
+      module: {{ $.Chart.Name }}-{{ .name }}
+{{- if not (quote .replicas | empty) }}
+  replicas: {{ .replicas }} # tells deployment to run 2 pods matching the template
+{{- else }}
+  replicas: {{ $.Values.nginx.params.replicas }} # tells deployment to run 2 pods matching the template
+{{- end }}
   template:
     metadata:
       labels:
-        module: {{ $.Chart.Name }}
+        module: {{ $.Chart.Name }}-{{ .name }}
     spec:
       containers:
       - name: nginx
         image: nginx:1.14.2
         ports:
         - containerPort: 80
+---
+{{- end }}

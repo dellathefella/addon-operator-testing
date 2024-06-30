@@ -1,15 +1,19 @@
+{{- range .Values.global.nginxReplicaGroups }}
 apiVersion: v1
 kind: Service
 metadata:
   labels:
     module: {{ $.Chart.Name }}
-  name: {{ $.Chart.Name }}-service
-  namespace: {{ .Values.nginx.params.namespace }}
+    nginxGroup: {{ $.Chart.Name }}-{{ .name }}
+  name: {{ $.Chart.Name }}-service-{{ .name }}
+  namespace: {{ .namespace }}
 spec:
   type: ClusterIP
   selector:
-    module: {{ $.Chart.Name }}
+    nginxGroup: {{ $.Chart.Name }}-{{ .name }}
   ports:
     - protocol: TCP
       port: 80
       targetPort: 9376
+---
+{{- end }}

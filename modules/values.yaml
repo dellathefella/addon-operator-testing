@@ -1,0 +1,8 @@
+global:
+  nginxReplicaGroups:
+  - name: "test-123"
+    replicas: "44"
+    namespace: "default"
+  - name: "test-345"
+    replicas: "34"
+    namespace: "default"

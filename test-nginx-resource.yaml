@@ -1,0 +1,17 @@
+apiVersion: poc.com/v1alpha
+kind: Nginx
+metadata:
+  name: test-nginx-333333
+  namespace: default
+spec:
+  minReplicas: 3
+  maxReplicas: 5
+---
+apiVersion: poc.com/v1alpha
+kind: Nginx
+metadata:
+  name: test-nginx-222222
+  namespace: default
+spec:
+  minReplicas: 5
+  maxReplicas: 8

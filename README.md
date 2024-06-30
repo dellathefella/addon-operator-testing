@@ -13,6 +13,10 @@ minikube start --nodes 2  --insecure-registry "10.0.0.0/24" -p multinode
 minikube addons enable registry -p multinode
 kubectl port-forward --namespace kube-system service/registry 5000:80
 docker run --rm -it --network=host alpine ash -c "apk add socat && socat TCP-LISTEN:5000,reuseaddr,fork TCP:host.docker.internal:5000"
+
+
+addon-operator module patches nginx
+kubectl get crds -oname | xargs kubectl delete
 ```
 
 ### run
